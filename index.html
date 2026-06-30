@@ -1,33 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindWise Booking Embed Demo</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 24px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #f5f5f5;
-    }
-    .wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    h1 {
-      font-size: 1.4rem;
-      color: #222;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindWise | Book an Appointment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mw-navy: #1c3a63;
+    --mw-navy-dark: #122544;
+    --mw-magenta: #9b1458;
+    --mw-gold: #e8a23a;
+    --mw-ink: #1f2937;
+    --mw-bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: var(--mw-ink);
+    background: var(--mw-bg);
+  }
+
+  /* ---- HEADER ---- */
+  header.mw-header {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+  }
+  .mw-header-top {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .mw-icon-btn, .mw-urgent-btn, .mw-donate-btn {
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 9px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid transparent;
+  }
+  .mw-icon-btn {
+    background: var(--mw-navy);
+    color: #fff;
+    padding: 9px 12px;
+  }
+  .mw-urgent-btn {
+    background: var(--mw-navy);
+    color: #fff;
+  }
+  .mw-urgent-btn:hover { background: var(--mw-navy-dark); }
+  .mw-donate-btn {
+    background: #fff;
+    color: var(--mw-magenta);
+    border-color: var(--mw-magenta);
+  }
+  .mw-donate-btn:hover { background: var(--mw-magenta); color: #fff; }
+
+  .mw-header-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 24px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .mw-logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+  nav.mw-nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  nav.mw-nav a {
+    color: var(--mw-navy);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  nav.mw-nav a:hover { color: var(--mw-magenta); }
+
+  /* ---- PAGE INTRO ---- */
+  .mw-page-banner {
+    background: var(--mw-navy);
+    border-radius: 0 90px 90px 0;
+    color: #fff;
+    max-width: 560px;
+    margin: 28px auto 8px 24px;
+    padding: 32px 36px;
+  }
+  .mw-page-banner h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.9rem;
+    font-weight: 800;
+  }
+  .mw-page-banner p {
+    margin: 0 0 14px 0;
+    opacity: 0.92;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+  .mw-divider-wrap {
+    text-align: center;
+    margin: 36px auto 4px;
+  }
+  .mw-divider-wrap p {
+    color: var(--mw-magenta);
+    font-weight: 800;
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 8px;
+    line-height: 1.35;
+  }
+  .mw-divider-wrap svg { display: block; margin: 0 auto; }
+
+  /* ---- MAIN CONTENT ---- */
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 24px 56px;
+  }
+  .mw-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 0 2px 14px rgba(28,58,99,0.08);
+    padding: 22px;
+  }
+  .mw-demo-flag {
+    background: #fff4e6;
+    border: 1px solid var(--mw-gold);
+    color: #7a4d00;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+
+  /* ---- FOOTER ---- */
+  footer.mw-footer {
+    background: var(--mw-navy-dark);
+    color: #c9d4e3;
+    padding: 36px 24px 16px;
+    font-size: 0.86rem;
+  }
+  .mw-footer-inner { max-width: 1180px; margin: 0 auto; }
+  .mw-footer-cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .mw-footer-col h4 {
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px 0;
+  }
+  .mw-footer-col a {
+    display: block;
+    color: #c9d4e3;
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+  .mw-footer-col a:hover { color: #fff; text-decoration: underline; }
+  .mw-footer-social { display: flex; gap: 12px; margin-top: 4px; }
+  .mw-footer-social a {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .mw-footer-social a:hover { background: var(--mw-magenta); }
+  .mw-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 14px;
+    font-size: 0.78rem;
+    color: #8fa1bd;
+    line-height: 1.5;
+  }
+  .mw-footer-bottom a { color: #8fa1bd; }
+
+  @media (max-width: 760px) {
+    .mw-header-main { flex-direction: column; align-items: flex-start; }
+    nav.mw-nav { justify-content: flex-start; gap: 14px; font-size: 0.8rem; }
+    .mw-page-banner { border-radius: 0 50px 50px 0; margin-left: 0; }
+  }
+</style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>MindWise Booking Widget — Embed Demo</h1>
+
+<header class="mw-header">
+  <div class="mw-header-top">
+    <a class="mw-icon-btn" href="#" aria-label="Search">&#128269;</a>
+    <a class="mw-urgent-btn" href="https://www.mindwisenv.org/info-support/help-in-a-crisis/">I need urgent help</a>
+    <a class="mw-donate-btn" href="https://www.mindwisenv.org/support-us/donate/">Donate</a>
+  </div>
+  <div class="mw-header-main">
+    <a class="mw-logo" href="https://www.mindwisenv.org/">
+      <img src="https://www.mindwisenv.org/images/logo-blob.png" alt="MindWise logo">
+    </a>
+    <nav class="mw-nav">
+      <a href="https://www.mindwisenv.org/who-we-are/">Who We Are</a>
+      <a href="https://www.mindwisenv.org/what-we-do/">What We Do</a>
+      <a href="https://www.mindwisenv.org/support-us/">Support Us</a>
+      <a href="https://www.mindwisenv.org/info-support/">Info &amp; Support</a>
+      <a href="https://www.mindwisenv.org/mental-health-conditions/">Mental Health Conditions</a>
+      <a href="https://www.mindwisenv.org/mental-health-training/">Mental Health Training</a>
+      <a href="https://www.mindwisenv.org/news-blogs/">News &amp; Blogs</a>
+      <a href="https://www.mindwisenv.org/talking-therapies/">Talking Therapies</a>
+    </nav>
+  </div>
+</header>
+
+<div class="mw-page-banner">
+  <h1>Book an Appointment</h1>
+  <p>Supporting and empowering people affected by mental health issues to live their best lives.</p>
+</div>
+
+<div class="mw-divider-wrap">
+  <p>Use the calendar below to find and book a session that works for you.</p>
+  <svg width="320" height="14" viewBox="0 0 320 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 12C40 2 80 2 118 8C156 14 196 14 234 6C262 0 290 2 318 8" stroke="#d9d9d9" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<main>
+  <div class="mw-card">
+    <span class="mw-demo-flag">Internal demo — embed prototype, not a live service page</span>
 
     <script>/*version:4.0*/window.addEventListener('message',function(e){var id="CS_portal_69cd3f5df1b53807404c771a";var d=e.data;if(!d.corsizio)return;if(d.iframeId&&d.iframeId!==id)return;var f=document.getElementById(id);if(!f)return;if(!d.iframeId){f.contentWindow.postMessage({iframeId:id},'*');return;}d.height>=0&&(f.height=d.height+'px');d.scrollTo>=0&&window.scrollTo(0,d.scrollTo);d.scrollIntoView&&f.scrollIntoView();});</script>
     <iframe id="CS_portal_69cd3f5df1b53807404c771a" src="https://mindwise.corsizio.com?embed=noheader,calendar,grouping:category,paging:20" loading="lazy" width="100%" height="900px" frameborder="0"></iframe>
 
   </div>
+</main>
+
+<footer class="mw-footer">
+  <div class="mw-footer-inner">
+    <div class="mw-footer-cols">
+      <div class="mw-footer-col">
+        <h4>Get In Touch</h4>
+        <a href="https://www.mindwisenv.org/about-us/contact-us/">Contact Us</a>
+        <h4 style="margin-top:18px;">Work With Us</h4>
+        <a href="https://www.mindwisenv.org/who-we-are/join-our-mission/">Current vacancies</a>
+      </div>
+      <div class="mw-footer-col">
+        <h4>How We Protect Your Data</h4>
+        <a href="https://www.mindwisenv.org/privacy-policy/">Privacy Policy</a>
+        <h4 style="margin-top:18px;">How We Spend Our Money</h4>
+        <a href="https://www.mindwisenv.org/who-we-are/how-we-spend-our-money/">Finances &amp; Accounts</a>
+      </div>
+      <div class="mw-footer-col">
+        <h4>Staff Login</h4>
+        <a href="https://mindwisenv.sharepoint.com/sites/staffwebsite">Staff website</a>
+        <h4 style="margin-top:18px;">Follow Us</h4>
+        <div class="mw-footer-social">
+          <a href="https://www.facebook.com/MindWisenv/" aria-label="Facebook">f</a>
+          <a href="https://twitter.com/mindwisenv" aria-label="Twitter">x</a>
+          <a href="https://www.instagram.com/mindwisenv/" aria-label="Instagram">ig</a>
+          <a href="https://www.youtube.com/user/MindWisenv" aria-label="YouTube">yt</a>
+        </div>
+      </div>
+    </div>
+    <div class="mw-footer-bottom">
+      Registered in Northern Ireland Number NI071976. Registered Office Pinewood House, 46 Newforge Lane, Belfast BT9 5NW.
+      MindWise is the operating name of Mind Wise New Vision, a company limited by guarantee and recognised by HM Revenue and Customs as a charity for tax purposes.
+      <br>
+      <a href="https://www.mindwisenv.org/cookies/">Cookie Policy</a> ·
+      <a href="https://www.mindwisenv.org/privacy-policy/">Privacy Policy</a> ·
+      Copyright 2026 · Demo page, not part of mindwisenv.org
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
